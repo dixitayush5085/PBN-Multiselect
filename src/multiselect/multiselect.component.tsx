@@ -73,6 +73,7 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     this.toggelOptionList = this.toggelOptionList.bind(this);
     this.onArrowKeyNavigation = this.onArrowKeyNavigation.bind(this);
     this.onSelectItem = this.onSelectItem.bind(this);
+    this.selectAllOptions = this.selectAllOptions.bind(this);
     this.filterOptionsByInput = this.filterOptionsByInput.bind(this);
     this.removeSelectedValuesFromOptions = this.removeSelectedValuesFromOptions.bind(this);
     this.isSelectedValue = this.isSelectedValue.bind(this);
@@ -352,6 +353,14 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
     }
   }
 
+  selectAllOptions() {
+    const { options } = this.state;
+    const { selectedValues } = this.state;
+    // console.log(options);
+    selectedValues.push(...options);
+    this.removeSelectedValuesFromOptions(true);
+  }
+
   onSingleSelect(item) {
     this.setState({ selectedValues: [item], toggleOptionsList: false });
   }
@@ -546,10 +555,11 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
 
   renderMultiselectContainer() {
     const { inputValue, toggleOptionsList, selectedValues } = this.state;
-    const { placeholder, style, singleSelect, id, name, hidePlaceholder, disable, showArrow, className, customArrow, hideSelectedList } = this.props;
+    const { placeholder, style, singleSelect, id, name, hidePlaceholder, disable, showArrow, className, customArrow, hideSelectedList, selectAll } = this.props;
     return (
       <div className={`multiselect-container multiSelectContainer ${disable ? `disable_ms` : ''} ${className || ''}`} id={id || 'multiselectContainerReact'} style={style['multiselectContainer']}>
-        <div className={`search-wrapper searchWrapper ${singleSelect ? 'singleSelect' : ''}`}
+        <div className={`search-wrapper searchWrapper ${singleSelect ? 'singleSelect' : ''} 
+        ${selectAll ? 'selectAllContainer' : ''}`}
           ref={this.searchWrapper} style={style['searchBox']}
           onClick={singleSelect ? this.toggelOptionList : () => {}}
         >
@@ -576,6 +586,9 @@ export class Multiselect extends React.Component<IMultiselectProps, any> {
               {customArrow ? <span className="icon_down_dir">{customArrow}</span> : <img src={DownArrow} className={`icon_cancel icon_down_dir`} />}
             </>
           )}
+          <p className="select_all_btn" onClick={this.selectAllOptions}>
+            {selectAll && 'Select All'}
+          </p>
         </div>
         <div
           className={`optionListContainer ${
@@ -628,6 +641,7 @@ Multiselect.defaultProps = {
   customCloseIcon: '',
   className: '',
   customArrow: undefined,
+  selectAll: false,
   selectedValueDecorator: v => v,
   optionValueDecorator: v => v
 } as IMultiselectProps;

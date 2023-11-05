@@ -24,6 +24,10 @@
   min-height: 22px;
   position: relative;
 }
+.selectAllContainer {
+  display: flex;
+  justify-content: space-between;
+}
 .multiSelectContainer input {
   border: none;
   margin-top: 3px;
@@ -130,4 +134,8 @@ li.groupChildEle {
 }
 .custom-close {
   display: flex;
+}
+.select_all_btn {
+  padding: 0px;
+  cursor: pointer;
 }

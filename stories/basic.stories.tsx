@@ -130,3 +130,12 @@ CustomCloseIcon.args = {
   customCloseIcon: <>🍑</>,
   selectedValues
 };
+
+export const CustomSelectAll = Template.bind({});
+CustomSelectAll.args = {
+  options,
+  displayValue: 'key',
+  placeholder: "Select All Dropdown",
+  selectAll: true,
+  customSelectAll: true
+};
