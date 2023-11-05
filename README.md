@@ -99,6 +99,8 @@ onRemove(selectedList, removedItem) {
 | `customCloseIcon` | `ReactNode or string` | `undefined` | Custom close icon and can be string or react component(Check demo for reference)
 | `selectedValueDecorator` | `(string) => ReactNode \| string` | `v => v` | A function that can be used to modify the representation selected value
 | `optionValueDecorator` | `(string) => string` | `v => v` | A function that can be used to modify the representation the available options
+| `customSelectAll` |	`boolean` |	`false` |	Whether or not to render a custom "Select All" button.
+| `customSelectAllRenderer`| `ReactElement` |	null |	A React element that will be rendered as the custom "Select All" button.
 ----
 
 
